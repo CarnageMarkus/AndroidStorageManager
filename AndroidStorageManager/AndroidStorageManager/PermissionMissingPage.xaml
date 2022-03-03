@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AndroidStorageManager.PermissionMissingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AndroidStorageManager"
+    x:DataType="local:PermissionMissingPage"
+    AutomationId="PermissionRequestPage">
+    <StackLayout>
+        <Frame
+            Padding="24"
+            BackgroundColor="#2196F3"
+            CornerRadius="0">
+            <Label
+                FontSize="20"
+                HorizontalTextAlignment="Center"
+                Text="Welcome to Android External Stortage Manager Test!"
+                TextColor="White" />
+        </Frame>
+        <Label
+            HorizontalOptions="CenterAndExpand"
+            HorizontalTextAlignment="Center"
+            Text="{Binding PermissionStatus.Description}" />
+        <StackLayout BindableLayout.ItemsSource="{Binding PermissionStatus.Permissions}" HorizontalOptions="CenterAndExpand">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="local:StoragePermission">
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding Granted}" />
+                        <Label Text="{Binding Name}" VerticalOptions="Center" />
+                    </StackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+        <Button
+            x:Name="requestButton"
+            AutomationId="RequestPermission"
+            Clicked="requestButton_Clicked"
+            IsVisible="True"
+            Text="Request" />
+    </StackLayout>
+
+</ContentPage>
